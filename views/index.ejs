@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/styles/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <title>List of Students</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1><%= header %></h1>
+  </header>
+  <main>
+    <form id="addForm" action="/" target="_blank" class="add-form">
+      <input id="addName" type="text" placeholder=" Enter first name" class="edit-input"> 
+      <input id="addSurname" type="text" placeholder=" Enter last name" class="edit-input">
+      <button type="submit"  class="btn add-btn">Add Student</button>
+    </form>
+    <ul id="group-list">
+      <% for(var i=0; i<group.length; i++) {%>
+        <li data-id="<%= group[i].id %>">
+          <div class="student-name">
+            <p><%= group[i].name %></p>
+          </div>
+          <div class="student-surname">
+              <p><%= group[i].surname %></p>
+          </div>
+          <div class="button-container">
+            <div class="delete-btn-container">
+             <!-- <form action="/" method="DELETE" class="deleteForm" data-id="<%= group[i].id %>">   -->         
+                <a href="/" class="btn delete-btn" data-id="<%= group[i].id %>">Delete</a>
+             <!-- </form>-->
+            </div>
+            <div>
+                <button class="btn edit-btn" data-id="<%= group[i].id %>" data-name="<%= group[i].name %>" data-surname="<%= group[i].surname %>">Edit</button>
+            </div>
+          </div>
+        </li>
+      <% } %>
+    </ul>
+    <div id="modal-box">
+      <div class="modal-content">              
+            <span class="close">&times;</span>
+            <form action="/"  id="editForm" data-id = "empty" data-name="empty" data-surname = "empty" class="edit-form" autocomplete="off"> 
+              <input id="editName" type="text" >
+              <input id="editSurname" type="text" >
+              <button id="submit-edit" type="submit" class="btn submit-btn">Submit</button>
+          </form>
+      </div>         
+    </div>
+  </main>  
+  <script src="/js/control.js"></script>
+  <script src="/js/form.js"></script>
+</body>
+</html>
